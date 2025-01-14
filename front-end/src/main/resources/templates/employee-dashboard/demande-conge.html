@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{employee-dashboard/layout}">
+<head>
+    <title>Home</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container mt-5">
+        <h1>Demande Congé</h1>
+        <form th:action="@{/demande-conge}" th:object="${conge}" method="post">
+            <div class="mb-3">
+                <label for="dateDebut" class="form-label">Date Début</label>
+                <input type="date" id="dateDebut" th:field="*{dateDebut}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="dateFin" class="form-label">Date Fin</label>
+                <input type="date" id="dateFin" th:field="*{dateFin}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="motif" class="form-label">Motif</label>
+                <input type="text" id="motif" th:field="*{motif}" class="form-control" required>
+            </div>
+
+            <input type="hidden" id="status" th:field="*{status}" class="form-control" value="En cours">
+
+            <div class="mb-3">
+                <label for="commentaire" class="form-label">Commentaire</label>
+                <textarea id="commentaire" th:field="*{commentaire}" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Demander</button>
+            <a href="/demande-conge" class="btn btn-secondary">Annuler</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>

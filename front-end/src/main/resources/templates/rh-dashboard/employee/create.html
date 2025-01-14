@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{rh-dashboard/layout}">
+<head>
+    <title>Ajouter Employee</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container mt-5">
+        <h1>Ajouter Employee</h1>
+        <form th:action="@{/employees/create}" th:object="${employee}" method="post">
+            <div class="mb-3">
+                <label for="nom" class="form-label">Nom</label>
+                <input type="text" id="nom" th:field="*{nom}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="prenom" class="form-label">Prenom</label>
+                <input type="text" id="prenom" th:field="*{prenom}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" th:field="*{email}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="adresse" class="form-label">Adresse</label>
+                <input type="text" id="adresse" th:field="*{adresse}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="telephone" class="form-label">Telephone</label>
+                <input type="text" id="telephone" th:field="*{telephone}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="salaire" class="form-label">Salaire</label>
+                <input type="number" step="0.01" id="salaire" th:field="*{salaire}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select id="role" th:field="*{role}" class="form-control" required>
+                    <option value="" disabled selected>Select Role</option>
+                    <option value="ROLE_HR">ROLE_HR</option>
+                    <option value="ROLE_EMPLOYEE">ROLE_EMPLOYEE</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">Ajouter</button>
+            <a href="/employees" class="btn btn-secondary">Annuler</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{rh-dashboard/layout}">
+<head>
+    <title>Liste des Congés</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container mt-5">
+        <h1>Liste des Congés</h1>
+        <a href="/conges/create" class="btn btn-primary mb-3">Ajouter Nouveau Congé</a>
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nom de l'Employé</th>
+                <th>Date Début</th>
+                <th>Date Fin</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="conge : ${conges}">
+                <td th:text="${conge.id}"></td>
+                <td th:text="${conge.user.nom} + ' ' + ${conge.user.prenom}"></td>
+                <td th:text="${conge.dateDebut}"></td>
+                <td th:text="${conge.dateFin}"></td>
+                <td th:if="${conge.status == 'Approuver'}" ><span class="badge text-bg-success" th:text="${conge.status}"></span></td>
+                <td th:if="${conge.status == 'Rejeter'}"  > <span class="badge text-bg-danger" th:text="${conge.status}"></span></td>
+                <td th:if="${conge.status == 'En cours'}" > <span class="badge text-bg-secondary" th:text="${conge.status}"></span></td>
+                <td>
+                    <a th:href="@{/conges/{id}(id=${conge.id})}" class="btn btn-info btn-sm">Afficher</a>
+                    <a th:href="@{/conges/edit/{id}(id=${conge.id})}" class="btn btn-warning btn-sm">Modifier</a>
+                    <form th:action="@{/conges/delete/{id}(id=${conge.id})}" method="get" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

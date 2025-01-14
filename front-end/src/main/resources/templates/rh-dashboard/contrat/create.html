@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{rh-dashboard/layout}">
+<head>
+    <title>Ajouter Contrat</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container mt-5">
+        <h1>Ajouter Contrat</h1>
+        <form th:action="@{/contrats/create}" th:object="${contrat}" method="post">
+            <div class="mb-3">
+                <label for="dateDebut" class="form-label">Date Début</label>
+                <input type="date" id="dateDebut" th:field="*{dateDebut}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="dateFin" class="form-label">Date Fin</label>
+                <input type="date" id="dateFin" th:field="*{dateFin}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="type" class="form-label">Type</label>
+                <select id="type" th:field="*{type}" class="form-control" required>
+                    <option value="" disabled selected>Select Type</option>
+                    <option value="CDI">CDI</option>
+                    <option value="CDD">CDD</option>
+                    <option value="Freelance">Freelance</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="user" class="form-label">Employé</label>
+                <select id="user" th:field="*{user.id}" class="form-control" required>
+                    <option value="" disabled selected>Select Employee</option>
+                    <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.id} + ' - ' + ${employee.nom} + ' ' + ${employee.prenom}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">Ajouter</button>
+            <a href="/contrats" class="btn btn-secondary">Annuler</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>

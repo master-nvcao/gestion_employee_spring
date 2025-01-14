@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{rh-dashboard/layout}">
+<head>
+    <title>Détails Contrat</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container mt-5">
+        <h1>Détails Contrat</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <td th:text="${contrat.id}"></td>
+            </tr>
+            <tr>
+                <th>Nom de l'Employé</th>
+                <td th:text="${contrat.user.nom} + ' ' + ${contrat.user.prenom}"></td>
+            </tr>
+            <tr>
+                <th>Date Début</th>
+                <td th:text="${contrat.dateDebut}"></td>
+            </tr>
+            <tr>
+                <th>Date Fin</th>
+                <td th:text="${contrat.dateFin}"></td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td th:text="${contrat.type}"></td>
+            </tr>
+        </table>
+        <a href="/contrats" class="btn btn-secondary">Retourner</a>
+    </div>
+</div>
+</body>
+</html>

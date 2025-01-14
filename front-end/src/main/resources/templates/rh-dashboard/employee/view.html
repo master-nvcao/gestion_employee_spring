@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{rh-dashboard/layout}">
+<head>
+    <title>Employee Details</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container mt-5">
+        <h1>Details Employee </h1>
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <td th:text="${employee.id}"></td>
+            </tr>
+            <tr>
+                <th>Nom Complet</th>
+                <td th:text="${employee.nom} + ' ' + ${employee.prenom}"></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td th:text="${employee.email}"></td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td th:text="${employee.adresse}"></td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td th:text="${employee.telephone}"></td>
+            </tr>
+            <tr>
+                <th>Salaire</th>
+                <td th:text="${employee.salaire}"></td>
+            </tr>
+            <tr>
+                <th>Role</th>
+                <td th:text="${employee.role}"></td>
+            </tr>
+        </table>
+        <a href="/employees" class="btn btn-secondary">Retourner</a>
+    </div>
+</div>
+</body>
+</html>

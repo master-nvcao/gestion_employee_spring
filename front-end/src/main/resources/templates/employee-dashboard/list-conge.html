@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{employee-dashboard/layout}">
+<head>
+    <title>Home</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container mt-5">
+        <h1>Liste des Congés</h1>
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Date Début</th>
+                <th>Date Fin</th>
+                <th>Motif</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="conge : ${conges}">
+                <td th:text="${conge.id}"></td>
+                <td th:text="${conge.dateDebut}"></td>
+                <td th:text="${conge.dateFin}"></td>
+                <td th:text="${conge.motif}"></td>
+
+                <td>
+                    <span th:if="${conge.status == 'Approuver'}" class="badge text-bg-success" th:text="${conge.status}"></span>
+                    <span th:if="${conge.status == 'Rejeter'}" class="badge text-bg-danger" th:text="${conge.status}"></span>
+                    <span th:if="${conge.status == 'En cours'}" class="badge text-bg-secondary" th:text="${conge.status}"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

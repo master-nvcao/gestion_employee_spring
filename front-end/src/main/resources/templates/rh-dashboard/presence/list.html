@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{rh-dashboard/layout}">
+<head>
+  <title>Liste des Présences</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="container mt-5">
+    <h1>Liste des Présences</h1>
+    <a href="/presences/create" class="btn btn-primary mb-3">Ajouter Nouvelle Présence</a>
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Nom de l'Employé</th>
+        <th>Date</th>
+        <th>Heure d'Arrivée</th>
+        <th>Heure de Sortie</th>
+        <th>Statut</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="presence : ${presences}">
+        <td th:text="${presence.id}"></td>
+        <td th:text="${presence.user.nom} + ' ' + ${presence.user.prenom}"></td>
+        <td th:text="${presence.date}"></td>
+        <td th:text="${presence.checkIn}"></td>
+        <td th:text="${presence.checkOut}"></td>
+        <td th:text="${presence.status}"></td>
+        <td>
+          <a th:href="@{/presences/{id}(id=${presence.id})}" class="btn btn-info btn-sm">Afficher</a>
+          <a th:href="@{/presences/edit/{id}(id=${presence.id})}" class="btn btn-warning btn-sm">Modifier</a>
+          <form th:action="@{/presences/delete/{id}(id=${presence.id})}" method="get" style="display:inline;">
+            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

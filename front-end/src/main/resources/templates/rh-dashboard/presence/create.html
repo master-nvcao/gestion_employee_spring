@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{rh-dashboard/layout}">
+<head>
+    <title>Ajouter Présence</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container mt-5">
+        <h1>Ajouter Présence</h1>
+        <form th:action="@{/presences/create}" th:object="${presence}" method="post">
+            <div class="mb-3">
+                <label for="date" class="form-label">Date</label>
+                <input type="date" id="date" th:field="*{date}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="checkIn" class="form-label">Heure d'Arrivée</label>
+                <input type="time" id="checkIn" th:field="*{checkIn}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="checkOut" class="form-label">Heure de Sortie</label>
+                <input type="time" id="checkOut" th:field="*{checkOut}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="status" class="form-label">Statut</label>
+                <select id="status" th:field="*{status}" class="form-control" required>
+                    <option value="" disabled selected>Select Status</option>
+                    <option value="Present">Présent</option>
+                    <option value="Absent">Absent</option>
+                    <option value="Late">En retard</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="heuresDAbsence" class="form-label">Heures d'Absence</label>
+                <input type="number" id="heuresDAbsence" th:field="*{heuresDAbsence}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="user" class="form-label">Employé</label>
+                <select id="user" th:field="*{user.id}" class="form-control" required>
+                    <option value="" disabled selected>Select Employee</option>
+                    <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.id} + ' - ' + ${employee.nom} + ' ' + ${employee.prenom}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">Ajouter</button>
+            <a href="/presences" class="btn btn-secondary">Annuler</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>

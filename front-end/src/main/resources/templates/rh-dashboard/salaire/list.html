@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{rh-dashboard/layout}">
+<head>
+    <title>Liste des Salaires</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container mt-5">
+        <h1>Liste des Salaires</h1>
+        <a href="/salaires/create" class="btn btn-primary mb-3">Ajouter Nouveau Salaire</a>
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nom de l'Employé</th>
+                <th>Heures Supplémentaires</th>
+                <th>Primes</th>
+                <th>Salaire de Base</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="salaire : ${salaires}">
+                <td th:text="${salaire.id}"></td>
+                <td th:text="${salaire.user.nom} + ' ' + ${salaire.user.prenom}"></td>
+                <td th:text="${salaire.heuresSupplementaires}"></td>
+                <td th:text="${salaire.primes}"></td>
+                <td th:text="${salaire.base}"></td>
+                <td>
+                    <a th:href="@{/salaires/{id}(id=${salaire.id})}" class="btn btn-info btn-sm">Afficher</a>
+                    <a th:href="@{/salaires/edit/{id}(id=${salaire.id})}" class="btn btn-warning btn-sm">Modifier</a>
+                    <form th:action="@{/salaires/delete/{id}(id=${salaire.id})}" method="get" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
